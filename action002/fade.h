@@ -35,6 +35,7 @@ public:
 	void Draw(void);						//•`‰æˆ—
 
 	void SetFade(CScene::MODE mode);
+	void SetFadeFirst(CScene::MODE mode);
 
 	FADE GetState(void);	// ó‘Ôæ“¾
 

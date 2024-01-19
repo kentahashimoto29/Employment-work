@@ -160,7 +160,6 @@ void CObject::Death(void)
 
 	CObject *pObject = this;
 
-
 	CObject *pObjectNext = pObject->m_pNext;
 	CObject *pObjectPrev = pObject->m_pPrev;
 

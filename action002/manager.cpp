@@ -305,7 +305,7 @@ void CManager::SetMode(CScene::MODE Mode)
 
 	else
 	{
-		m_pFade->SetFade(Mode);
+		m_pFade->SetFadeFirst(Mode);
 	}
 
 

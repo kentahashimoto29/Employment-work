@@ -145,6 +145,7 @@ void CFade::Draw(void)
 //========================================================
 void CFade::SetFade(CScene::MODE mode)
 {
+
 	if (m_fade == FADE_NONE)
 	{// 何もしていないとき
 
@@ -155,4 +156,30 @@ void CFade::SetFade(CScene::MODE mode)
 									// 色設定
 		m_pObject2D->SetColor(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 	}
+}
+
+//========================================================
+//位置を返す
+//========================================================
+void CFade::SetFadeFirst(CScene::MODE mode)
+{
+	if (m_fade == FADE_NONE)
+	{// 何もしていないとき
+
+	 // 次のモード設定
+		m_modenext = mode;
+		m_fade = FADE_IN;	// フェードアウト状態に設定
+
+							// 色設定
+		m_pObject2D->SetColor(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+}
+
+
+//========================================================
+//戦意の状態
+//========================================================
+CFade::FADE CFade::GetState(void)
+{
+	return m_fade;
 }

@@ -548,6 +548,28 @@ HRESULT CGame::Init(void)
 //========================================================
 void CGame::Uninit(void)
 {
+	////NULLチェック
+	//if (m_pTime != NULL)
+	//{
+	//	//終了処理
+	//	m_pTime->Uninit();
+
+	//	delete m_pTime;
+
+	//	m_pTime = NULL;
+	//}
+
+	////NULLチェック
+	//if (m_pPlayer3D != NULL)
+	//{
+	//	//終了処理
+	//	m_pPlayer3D->Uninit();
+
+	//	delete m_pPlayer3D;
+
+	//	m_pPlayer3D = NULL;
+	//}
+
 	Release();
 }
 
@@ -562,12 +584,15 @@ void CGame::Update(void)
 	//マウスの取得
 	CInputMouse *pInputMouse = CManager::GetInstance()->GetInputMouse();
 
-	if (pInputMouse->OnMouseDown(pInputMouse->TYPE_RIGHT) == true)
+	 if (pInputKeyboard->GetTrigger(DIK_RETURN) == true)
 	{
 		if (b != true)
 		{
-			CManager::GetInstance()->GetFade()->SetFade(CManager::GetInstance()->GetScene()->MODE_RESULT);
-			b = true;
+			if (CManager::GetInstance()->GetFade()->GetState() == CFade::FADE_NONE)
+			{
+				CManager::GetInstance()->GetFade()->SetFade(CManager::GetInstance()->GetScene()->MODE_RESULT);
+				b = true;
+			}
 		}
 	}
 }

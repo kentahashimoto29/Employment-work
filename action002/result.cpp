@@ -81,12 +81,13 @@ void CResult::Update(void)
 	//ƒ}ƒEƒX‚ÌŽæ“¾
 	CInputMouse *pInputMouse = CManager::GetInstance()->GetInputMouse();
 
-	if (pInputMouse->OnMouseDown(pInputMouse->TYPE_RIGHT) == true)
+	 if (pInputKeyboard->GetTrigger(DIK_RETURN) == true)
 	{
-		if (b != true)
-		{
-			CManager::GetInstance()->GetFade()->SetFade(CManager::GetInstance()->GetScene()->MODE_TITLE);
-		}
+		 if (CManager::GetInstance()->GetFade()->GetState() == CFade::FADE_NONE)
+		 {
+			 CManager::GetInstance()->GetFade()->SetFade(CManager::GetInstance()->GetScene()->MODE_TITLE);
+			 b = true;
+		 }
 	}
 }
 

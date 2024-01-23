@@ -30,10 +30,10 @@
 //頂点情報の構造体
 typedef struct
 {
-	D3DXVECTOR3 pos3D;
-	D3DXVECTOR3 nor3D;
-	D3DCOLOR col3D;
-	D3DXVECTOR2 tex3D;
+	D3DXVECTOR3 pos;
+	D3DXVECTOR3 nor;
+	D3DCOLOR col;
+	D3DXVECTOR2 tex;
 }VERTEX_3D;
 
 //頂点情報の構造体を定義

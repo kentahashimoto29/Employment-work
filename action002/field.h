@@ -32,15 +32,7 @@ public:
 
 private:
 	static int m_nIdxTexture;					//テクスチャの番号
-	LPDIRECT3DVERTEXBUFFER9 m_aVerBuff;			//頂点情報へのポインタ
 	LPDIRECT3DINDEXBUFFER9 m_pIdxBuff;			//インデックスバッファのポインタ
-	D3DXMATRIX m_mtxWorld;						//ワールドマトリックス
-
-	D3DXVECTOR3 m_pos;			//位置
-	D3DXVECTOR3 m_rot;			//向き
-
-	float nCntTexX;
-	float nCntTexY;
 };
 
 #endif

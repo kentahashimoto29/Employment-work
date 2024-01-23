@@ -17,6 +17,7 @@ CBlock3D *CGame::m_pBlock3D = NULL;
 CDeathBlock *CGame::m_pDeathBlock = NULL;
 CThroughBlock *CGame::m_pThroughBlock = NULL;
 CTime *CGame::m_pTime = NULL;
+CField *CGame::m_pField = NULL;
 
 //========================================================
 //コンストラクタ
@@ -45,9 +46,9 @@ HRESULT CGame::Init(void)
 
 	m_pTime = CTime::Create();
 
-	m_pPlayer3D = CPlayer3D::Create(D3DXVECTOR3(PLAYER_SPAWN_X, 0.0f, 0.0f));
+	m_pPlayer3D = CPlayer3D::Create(D3DXVECTOR3(1.0f, 0.0f, 0.0f));
 
-
+	m_pField = CField::Create(D3DXVECTOR3(1.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	//============================================================================================================================================
 
@@ -644,4 +645,12 @@ CThroughBlock *CGame::GetThroughBlock(void)
 CTime *CGame::GetTime(void)
 {
 	return m_pTime;
+}
+
+//========================================================
+//通り抜けれるブロックのポインタを返す関数
+//========================================================
+CField *CGame::GetField(void)
+{
+	return m_pField;
 }

@@ -16,8 +16,6 @@ CField::CField()
 {
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	nCntTexX = 0.0f;
-	nCntTexY = 0.0f;
 	m_aVerBuff = NULL;
 }
 
@@ -28,8 +26,6 @@ CField::CField(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 {
 	m_pos = pos;
 	m_rot = rot;
-	nCntTexX = 0.0f;
-	nCntTexY = 0.0f;
 	m_aVerBuff = NULL;
 }
 
@@ -83,41 +79,38 @@ HRESULT CField::Init(void)
 		m_nIdxTexture = pTexture->Regist("data\\TEXTURE\\block000.jpg");
 	}
 
+	BindTexture(m_nIdxTexture);
+
+	CObject3D::Init();
+
+	SetVtxField();
+
 	SetType(TYPE_FIELD);
+	
 
-	//頂点バッファを生成
-	pDevice->CreateVertexBuffer(sizeof(VERTEX_3D) * 14,
-		D3DUSAGE_WRITEONLY,
-		FVF_VERTEX_3D,
-		D3DPOOL_MANAGED,
-		&m_aVerBuff,
-		NULL);
-
-	VERTEX_3D *pVtx;
-
-	//頂点バッファをロック
+	/*//頂点バッファをロック
 	m_aVerBuff->Lock(0, 0, (void**)&pVtx, 0);
 
 	//頂点座標の設定
-	pVtx[0].pos3D = D3DXVECTOR3(-50.0f, 0.0f, 50.0f);
-	pVtx[1].pos3D = D3DXVECTOR3(50.0f, 0.0f, 50.0f);
-	pVtx[2].pos3D = D3DXVECTOR3(150.0f, 0.0f, 50.0f);
-	pVtx[3].pos3D = D3DXVECTOR3(-50.0f, 0.0f, -50.0f);
-	pVtx[4].pos3D = D3DXVECTOR3(50.0f, 0.0f, -50.0f);
-	pVtx[5].pos3D = D3DXVECTOR3(150.0f, 0.0f, -50.0f);
-	pVtx[6].pos3D = D3DXVECTOR3(-50.0f, 0.0f, -150.0f);
-	pVtx[7].pos3D = D3DXVECTOR3(50.0f, 0.0f, -150.0f);
-	pVtx[8].pos3D = D3DXVECTOR3(150.0f, 0.0f, -150.0f);
+	pVtx[0].pos = D3DXVECTOR3(-50.0f, 0.0f, 50.0f);
+	pVtx[1].pos = D3DXVECTOR3(50.0f, 0.0f, 50.0f);
+	pVtx[2].pos = D3DXVECTOR3(150.0f, 0.0f, 50.0f);
+	pVtx[3].pos = D3DXVECTOR3(-50.0f, 0.0f, -50.0f);
+	pVtx[4].pos = D3DXVECTOR3(50.0f, 0.0f, -50.0f);
+	pVtx[5].pos = D3DXVECTOR3(150.0f, 0.0f, -50.0f);
+	pVtx[6].pos = D3DXVECTOR3(-50.0f, 0.0f, -150.0f);
+	pVtx[7].pos = D3DXVECTOR3(50.0f, 0.0f, -150.0f);
+	pVtx[8].pos = D3DXVECTOR3(150.0f, 0.0f, -150.0f);
 
 	for (int nCntField = 0; nCntField < 9; nCntField++)
 	{
-		pVtx[nCntField].nor3D = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+		pVtx[nCntField].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 
 		//頂点カラーの設定
-		pVtx[nCntField].col3D = D3DCOLOR_RGBA(255, 255, 255, 255);
+		pVtx[nCntField].col = D3DCOLOR_RGBA(255, 255, 255, 255);
 	}
 
-	pVtx[0].tex3D = D3DXVECTOR2(nCntTexX, nCntTexY);
+	pVtx[0].tex = D3DXVECTOR2(nCntTexX, nCntTexY);
 
 	//テクスチャ座標の設定
 	for (int nCnt1 = 0; nCnt1 < 3; nCnt1++)
@@ -152,7 +145,7 @@ HRESULT CField::Init(void)
 				}
 			}
 
-			pVtx[nCnt2 + 3 * nCnt1].tex3D = D3DXVECTOR2(nCntTexX, nCntTexY);
+			pVtx[nCnt2 + 3 * nCnt1].tex = D3DXVECTOR2(nCntTexX, nCntTexY);
 		}
 	}
 
@@ -189,7 +182,7 @@ HRESULT CField::Init(void)
 	pIdx[13] = 5;
 
 	//インデックスバッファをアンロック
-	m_pIdxBuff->Unlock();
+	m_pIdxBuff->Unlock();*/
 
 	return S_OK;
 

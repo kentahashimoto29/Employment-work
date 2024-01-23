@@ -13,6 +13,7 @@
 #include "death_block.h"
 #include "through_block.h"
 #include "time.h"
+#include "field.h"
 
 //===================================
 //背景のクラス
@@ -35,6 +36,7 @@ public:
 	static CDeathBlock *GetDeathBlock();								//即死ブロックのポインタを返す関数
 	static CThroughBlock *GetThroughBlock();							//通り抜けれるブロックのポインタを返す関数
 	static CTime *GetTime();											//タイムのポインタを返す関数
+	static CField *GetField();											//フィールドのポインタを返す関数
 
 private:
 
@@ -43,6 +45,7 @@ private:
 	static CDeathBlock *m_pDeathBlock;									//即死ブロックのポインタ
 	static CThroughBlock *m_pThroughBlock;								//通り抜けれるブロックのポインタ
 	static CTime *m_pTime;												//タイムのポインタ
+	static CField *m_pField;											//フィールドのポインタ
 
 	bool b;
 };

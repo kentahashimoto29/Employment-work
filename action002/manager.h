@@ -52,7 +52,6 @@ public:
 
 private:
 	MODE m_mode;
-	LPDIRECT3DVERTEXBUFFER9 m_aVerBuff;		//頂点情報へのポインタ
 
 	D3DXVECTOR3 pos;
 };

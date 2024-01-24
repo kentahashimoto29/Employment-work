@@ -32,23 +32,23 @@ public:
 
 	D3DXVECTOR3 m_pos;						//オブジェクトの位置
 
-	static CPlayer3D *GetPlayer3D();									//プレイヤー3Dのポインタを返す関数
-	static CEnemy3D *GetEnemy3D();									//プレイヤー3Dのポインタを返す関数
-	static CBlock3D *GetBlock3D();										//ブロック3Dのポインタを返す関数
-	static CDeathBlock *GetDeathBlock();								//即死ブロックのポインタを返す関数
-	static CThroughBlock *GetThroughBlock();							//通り抜けれるブロックのポインタを返す関数
-	static CTime *GetTime();											//タイムのポインタを返す関数
-	static CField *GetField();											//フィールドのポインタを返す関数
+	static CPlayer3D *GetPlayer3D();			//プレイヤー3Dのポインタを返す関数
+	static CEnemy3D *GetEnemy3D();				//プレイヤー3Dのポインタを返す関数
+	static CBlock3D *GetBlock3D();				//ブロック3Dのポインタを返す関数
+	static CDeathBlock *GetDeathBlock();		//即死ブロックのポインタを返す関数
+	static CThroughBlock *GetThroughBlock();	//通り抜けれるブロックのポインタを返す関数
+	static CTime *GetTime();					//タイムのポインタを返す関数
+	static CField *GetField();					//フィールドのポインタを返す関数
 
 private:
 
-	static CPlayer3D *m_pPlayer3D;										//プレイヤー3Dのポインタ
-	static CEnemy3D *m_pEnemy3D;										//プレイヤー3Dのポインタ
-	static CBlock3D *m_pBlock3D;										//ブロック3Dのポインタ
-	static CDeathBlock *m_pDeathBlock;									//即死ブロックのポインタ
-	static CThroughBlock *m_pThroughBlock;								//通り抜けれるブロックのポインタ
-	static CTime *m_pTime;												//タイムのポインタ
-	static CField *m_pField;											//フィールドのポインタ
+	static CPlayer3D *m_pPlayer3D;				//プレイヤー3Dのポインタ
+	static CEnemy3D *m_pEnemy3D;				//プレイヤー3Dのポインタ
+	static CBlock3D *m_pBlock3D;				//ブロック3Dのポインタ
+	static CDeathBlock *m_pDeathBlock;			//即死ブロックのポインタ
+	static CThroughBlock *m_pThroughBlock;		//通り抜けれるブロックのポインタ
+	static CTime *m_pTime;						//タイムのポインタ
+	static CField *m_pField;					//フィールドのポインタ
 
 	bool b;
 };

@@ -6,7 +6,8 @@
 //========================================================
 #include "enemy3D.h"
 #include "manager.h"
-#include "bullet3D.h"
+#include "Player3D.h"
+#include "block3D.h"
 
 int CEnemy3D::m_nIdxTexture = 0;
 
@@ -147,7 +148,7 @@ void CEnemy3D::Uninit(void)
 void CEnemy3D::Update(void)
 {
 	//プレイヤーの情報を取得
-	//CPlayer3D *pPlayer = CManager::GetPlayer3D();
+	//CPlayer3D *pPlayer = CManager::GetInstance();
 
 	//ブロック3Dの取得
 	//CBlock3D *pBlock = CManager::GetBlock3D();
@@ -165,10 +166,10 @@ void CEnemy3D::Update(void)
 
 	m_pos -= m_move;
 
-	if (pInputKeyboard->GetTrigger(DIK_U) == TRUE)
+	/*if (pInputKeyboard->GetTrigger(DIK_U) == TRUE)
 	{
 		CBullet3D::Create(m_pos, m_rot, 1.0f);
-	}
+	}*/
 
 	//pBlock->Collision(&m_pos, &m_Oldpos, &m_move, m_VtxMax, m_VtxMin);
 

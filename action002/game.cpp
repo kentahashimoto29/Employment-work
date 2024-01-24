@@ -13,6 +13,7 @@
 
 
 CPlayer3D *CGame::m_pPlayer3D = NULL;
+CEnemy3D *CGame::m_pEnemy3D = NULL;
 CBlock3D *CGame::m_pBlock3D = NULL;
 CDeathBlock *CGame::m_pDeathBlock = NULL;
 CThroughBlock *CGame::m_pThroughBlock = NULL;
@@ -47,6 +48,8 @@ HRESULT CGame::Init(void)
 	m_pTime = CTime::Create();
 
 	m_pPlayer3D = CPlayer3D::Create(D3DXVECTOR3(1.0f, 0.0f, 0.0f));
+
+	m_pEnemy3D = CEnemy3D::Create(D3DXVECTOR3(1.0f, 0.0f, 200.0f));
 
 	m_pField = CField::Create(D3DXVECTOR3(1.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
@@ -613,6 +616,14 @@ void CGame::Draw(void)
 CPlayer3D *CGame::GetPlayer3D(void)
 {
 	return m_pPlayer3D;
+}
+
+//========================================================
+//エネミー3Dのポインタを返す関数
+//========================================================
+CEnemy3D *CGame::GetEnemy3D(void)
+{
+	return m_pEnemy3D;
 }
 
 //========================================================

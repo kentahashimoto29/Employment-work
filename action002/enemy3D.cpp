@@ -10,13 +10,14 @@
 #include "block3D.h"
 
 int CEnemy3D::m_nIdxTexture = 0;
+int CEnemy3D::m_nNum = 0;
 
 //========================================================
 //コンストラクタ
 //========================================================
 CEnemy3D::CEnemy3D(int nPriority) : CObjectX(nPriority)
 {
-
+	m_nNum++;
 }
 
 //========================================================
@@ -26,6 +27,7 @@ CEnemy3D::CEnemy3D(D3DXVECTOR3 pos, int nPriority) : CObjectX(nPriority)
 {
 	m_pos = pos;
 	m_nLife = 3;
+	m_nNum++;
 }
 
 //========================================================
@@ -41,15 +43,15 @@ CEnemy3D::~CEnemy3D()
 //========================================================
 CEnemy3D *CEnemy3D::Create(D3DXVECTOR3 pos)
 {
-	CEnemy3D *pPlayer3D;
+	CEnemy3D *pEnemy3D;
 
 	//2Dオブジェクトの生成
-	pPlayer3D = new CEnemy3D(pos);
+	pEnemy3D = new CEnemy3D(pos);
 
 	//初期化処理
-	pPlayer3D->Init();
+	pEnemy3D->Init();
 
-	return pPlayer3D;
+	return pEnemy3D;
 }
 
 //========================================================
@@ -139,6 +141,8 @@ HRESULT CEnemy3D::Init(void)
 //========================================================
 void CEnemy3D::Uninit(void)
 {
+	m_nNum--;
+
 	CObjectX::Uninit();
 }
 
@@ -181,6 +185,10 @@ void CEnemy3D::Update(void)
 	}*/
 
 	//pBlock->Collision(&m_pos, &m_Oldpos, &m_move, m_VtxMax, m_VtxMin);
+	if (pPlayer->CollisionEnemy(m_pos, m_VtxMax, m_VtxMin) == true)
+	{
+		Uninit();
+	}
 
 	if (m_nLife <= 0)
 	{
@@ -202,6 +210,14 @@ void CEnemy3D::Draw(void)
 D3DXVECTOR3 CEnemy3D::GetPos(void)
 {
 	return m_pos;
+}
+
+//========================================================
+//位置を返す
+//========================================================
+int CEnemy3D::GetNum(void)
+{
+	return m_nNum;
 }
 
 //========================================================

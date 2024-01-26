@@ -49,8 +49,6 @@ HRESULT CGame::Init(void)
 
 	m_pPlayer3D = CPlayer3D::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
-	m_pEnemy3D = CEnemy3D::Create(D3DXVECTOR3(200.0f, 0.0f, 200.0f));
-
 	m_pEnemy3D = CEnemy3D::Create(D3DXVECTOR3(-200.0f, 0.0f, 200.0f));
 
 
@@ -576,9 +574,20 @@ void CGame::Uninit(void)
 	//NULLチェック
 	if (m_pEnemy3D != NULL)
 	{
-		//終了処理
-		m_pEnemy3D->Uninit();
+		for (int i = 0; i < m_pEnemy3D->GetNum();)
+		{
+			//終了処理
+			m_pEnemy3D->Uninit();
+		}
 	}
+
+	//NULLチェック
+	if (m_pField != NULL)
+	{
+		//終了処理
+		m_pField->Uninit();
+	}
+	
 
 	Release();
 }
@@ -594,7 +603,19 @@ void CGame::Update(void)
 	//マウスの取得
 	CInputMouse *pInputMouse = CManager::GetInstance()->GetInputMouse();
 
-	 if (pInputKeyboard->GetTrigger(DIK_RETURN) == true)
+	if (pInputKeyboard->GetTrigger(DIK_RETURN) == true)
+	{
+		if (b != true)
+		{
+			if (CManager::GetInstance()->GetFade()->GetState() == CFade::FADE_NONE)
+			{
+				CManager::GetInstance()->GetFade()->SetFade(CManager::GetInstance()->GetScene()->MODE_RESULT);
+				b = true;
+			}
+		}
+	}
+
+	if (m_pEnemy3D->GetNum() <= 0)
 	{
 		if (b != true)
 		{

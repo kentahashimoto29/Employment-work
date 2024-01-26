@@ -124,7 +124,7 @@ HRESULT CPlayer3D::Init(void)
 
 	m_pMotion->Set(m_pMotion->TYPE_STAND);
 
-	CObject::SetType(TYPE_PLAYER_X);
+	CObject::SetType(TYPE_PLAYER_3D);
 
 	return S_OK;
 }
@@ -1085,6 +1085,42 @@ bool CPlayer3D::Collisionbool(D3DXVECTOR3 *pPos, D3DXVECTOR3 vtxMax, D3DXVECTOR3
 	return b;
 }
 
+
+//========================================================
+//敵とプレイヤーとの当たり判定
+//========================================================
+bool CPlayer3D::CollisionEnemy(D3DXVECTOR3 pos, D3DXVECTOR3 vtxMax, D3DXVECTOR3 vtxMin)
+{
+	for (int nCntPriority = 0; nCntPriority < 8; nCntPriority++)
+	{
+		CObject *pObject = GetTop(nCntPriority);
+
+		TYPE type;
+
+		while (pObject != NULL)
+		{
+			CObject *pObjectNext = pObject->GetNext();
+
+			//種類を取得
+			type = pObject->GetType();
+
+			if (type == TYPE_ENEMY)
+			{
+				if (pos.x + vtxMin.x < m_pos.x + m_VtxMax.x
+					&& pos.x + vtxMax.x > m_pos.x + m_VtxMin.x
+					&& pos.z + vtxMin.z < m_pos.z + m_VtxMax.z
+					&& pos.z + vtxMax.z > m_pos.z + m_VtxMin.z)
+				{
+					return true;
+				}
+			}
+
+			pObject = pObjectNext;
+		}
+	}
+
+	return false;
+}
 
 //=======================================
 //リスポーン処理

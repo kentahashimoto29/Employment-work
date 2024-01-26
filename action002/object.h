@@ -18,7 +18,7 @@ public:
 	{
 		TYPE_NONE = 0,
 		TYPE_PLATER,
-		TYPE_PLAYER_X,
+		TYPE_PLAYER_3D,
 		TYPE_FACE_X,
 		TYPE_ENEMY,
 		TYPE_BULLET,
@@ -55,8 +55,6 @@ public:
 
 	static CObject *GetTop(int nPriority);		// 先頭のオブジェクト取得
 	CObject *GetNext(void);						//次のオブジェクトを返す
-
-	//static CObject *GetTop(int nPrioriy);		//
 
 	void SetType(TYPE type);					//種類を設定
 	TYPE GetType(void);							//種類を返す

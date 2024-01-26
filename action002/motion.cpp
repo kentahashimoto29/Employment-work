@@ -239,12 +239,12 @@ void CMotion::Updata(void)
 		{
 			float DiffposX, DiffposY, DiffposZ, DiffrotX, DiffrotY, DiffrotZ;		//·•ª
 
-			DiffposX = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fPosX - m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fPosX;
-			DiffposY = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fPosY - m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fPosY;
-			DiffposZ = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fPosZ - m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fPosZ;
-			DiffrotX = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fRotX - m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fRotX;
-			DiffrotY = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fRotY - m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fRotY;
-			DiffrotZ = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fRotZ - m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fRotZ;
+			DiffposX = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fPosX - m_aInfo[m_nTypeOld].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fPosX;
+			DiffposY = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fPosY - m_aInfo[m_nTypeOld].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fPosY;
+			DiffposZ = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fPosZ - m_aInfo[m_nTypeOld].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fPosZ;
+			DiffrotX = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fRotX - m_aInfo[m_nTypeOld].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fRotX;
+			DiffrotY = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fRotY - m_aInfo[m_nTypeOld].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fRotY;
+			DiffrotZ = m_aInfo[m_nType].aKeyInfo[m_nKeyTarget].aKey[nCnt].fRotZ - m_aInfo[m_nTypeOld].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fRotZ;
 
 			m_ppModel[nCnt]->SetPos(D3DXVECTOR3(m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fPosX + DiffposX * (m_nCounter / m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].nFrame),
 				m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].aKey[nCnt].fPosY + DiffposY * (m_nCounter / m_aInfo[m_nType].aKeyInfo[m_nKeyCurrent].nFrame),
@@ -282,6 +282,8 @@ void CMotion::Updata(void)
 			}
 		}
 	}
+
+	m_nTypeOld = m_nType;
 }
 
 //========================================================

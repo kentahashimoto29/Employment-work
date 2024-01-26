@@ -80,7 +80,7 @@ void CCamera::Update(void)
 	//ƒvƒŒƒCƒ„[3D‚ÌŽæ“¾
 	CPlayer3D *pPlayer3D = CGame::GetPlayer3D();
 
-	
+	//SetPosGame(pPlayer3D->GetPos(), pPlayer3D->GetPos());
 
 	//m_posR.x += pPlayer3D->GetMove().x;
 	//m_posV.x += pPlayer3D->GetMove().x;

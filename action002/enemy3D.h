@@ -27,11 +27,14 @@ public:
 	void Draw(void);							//描画処理
 
 	D3DXVECTOR3 GetPos(void);					//位置を返す
+	static int GetNum(void);					//総数を返す
 
 	void HitEnemy(void);						//敵のダメージ処理
 
 private:
+
 	static int m_nIdxTexture;					//テクスチャの番号
+	static int m_nNum;							//総数
 
 	D3DXVECTOR3 m_VtxMax;						//モデルの最大値
 	D3DXVECTOR3 m_VtxMin;						//モデルの最小値

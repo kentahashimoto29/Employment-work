@@ -73,7 +73,8 @@ public:
 private:
 	INFO m_aInfo[6];
 	int m_nNumAll;
-	int m_nType; 
+	int m_nType;
+	int m_nTypeOld;
 	int m_bLoop[6];
 	int m_nNumKey;
 	int m_nKey[16];

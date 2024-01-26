@@ -15,3 +15,7 @@
 -- ゲーム画面の仕様 --
 
 ・敵が０体 or エンターを押したらリザルトに遷移
+
+
+-- GitのURL --
+https://github.com/kentahashimoto29/Employment-work.git

@@ -12,7 +12,7 @@ int CTime::m_nIdxTexture = 0;
 //========================================================
 //コンストラクタ
 //========================================================
-CTime::CTime()
+CTime::CTime(int nPriority) : CObject(nPriority)
 {
 	m_nTime = 100;
 	m_nInitTime = m_nTime;
@@ -67,12 +67,14 @@ HRESULT CTime::Init(void)
 
 	for (int nCnt = 0; nCnt < TIME_MAX; nCnt++)
 	{
-		m_apObject2D[nCnt] = new CObject2D;
+		m_apObject2D[nCnt] = new CObject2D();
 
 		m_apObject2D[nCnt]->Init();
 
 		m_apObject2D[nCnt]->BindTexture(m_nIdxTexture);
 	}
+
+	SetType(CObject::TYPE_TIME);
 
 	SetTime(m_nTime);
 

@@ -117,11 +117,11 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 	m_pLight = new CLight;
 	m_pLight->Init();
 
-	SetMode(GetScene()->MODE_GAME);
-
 	//ƒJƒƒ‰‚Ì¶¬
 	m_pCamera = new CCamera;
 	m_pCamera->Init();
+
+	SetMode(GetScene()->MODE_GAME);
 
 	return S_OK;
 }
@@ -196,7 +196,6 @@ void CManager::Update(void)
 void CManager::Draw(void)
 {
 	//•`‰æˆ—
-	//m_pScene->Draw();
 	m_pFade->Draw();
 	m_pRenderer->Draw();
 }

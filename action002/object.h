@@ -31,6 +31,7 @@ public:
 		TYPE_TITLE,
 		TYPE_GAME,
 		TYPE_RESULT,
+		TYPE_TIME,
 		TYPE_MAX,
 	}TYPE;
 

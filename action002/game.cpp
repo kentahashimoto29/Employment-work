@@ -47,11 +47,16 @@ HRESULT CGame::Init(void)
 
 	m_pTime = CTime::Create();
 
-	m_pPlayer3D = CPlayer3D::Create(D3DXVECTOR3(1.0f, 0.0f, 0.0f));
+	m_pPlayer3D = CPlayer3D::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
-	m_pEnemy3D = CEnemy3D::Create(D3DXVECTOR3(1.0f, 0.0f, 200.0f));
+	m_pEnemy3D = CEnemy3D::Create(D3DXVECTOR3(200.0f, 0.0f, 200.0f));
 
-	m_pField = CField::Create(D3DXVECTOR3(1.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_pEnemy3D = CEnemy3D::Create(D3DXVECTOR3(-200.0f, 0.0f, 200.0f));
+
+
+	m_pField = CField::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+	CManager::GetInstance()->GetCamera()->SetPosGame(m_pPlayer3D->GetPos(), m_pPlayer3D->GetPos());
 
 	//============================================================================================================================================
 
@@ -544,6 +549,8 @@ HRESULT CGame::Init(void)
 	m_pBlock3D = CBlock3D::Create(D3DXVECTOR3(2520.0f, 0.0f, 0.0f));*/
 
 
+
+
 	return S_OK;
 }
 
@@ -552,27 +559,26 @@ HRESULT CGame::Init(void)
 //========================================================
 void CGame::Uninit(void)
 {
-	////NULLチェック
-	//if (m_pTime != NULL)
-	//{
-	//	//終了処理
-	//	m_pTime->Uninit();
+	//NULLチェック
+	if (m_pTime != NULL)
+	{
+		//終了処理
+		m_pTime->Uninit();
+	}
 
-	//	delete m_pTime;
+	//NULLチェック
+	if (m_pPlayer3D != NULL)
+	{
+		//終了処理
+		m_pPlayer3D->Uninit();
+	}
 
-	//	m_pTime = NULL;
-	//}
-
-	////NULLチェック
-	//if (m_pPlayer3D != NULL)
-	//{
-	//	//終了処理
-	//	m_pPlayer3D->Uninit();
-
-	//	delete m_pPlayer3D;
-
-	//	m_pPlayer3D = NULL;
-	//}
+	//NULLチェック
+	if (m_pEnemy3D != NULL)
+	{
+		//終了処理
+		m_pEnemy3D->Uninit();
+	}
 
 	Release();
 }

@@ -18,7 +18,7 @@
 class CTime : public CObject
 {
 public:
-	CTime();								//コンストラクタ
+	CTime(int nPriority = 4);								//コンストラクタ
 	~CTime();								//デストラクタ
 
 	static CTime *Create();				//敵の生成

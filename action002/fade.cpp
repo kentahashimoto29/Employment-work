@@ -104,7 +104,7 @@ void CFade::Update(void)
 				}
 			}
 
-			m_color.a -= 0.007f;
+			m_color.a -= 0.01f;
 
 			if (m_color.a <= 0.0f)
 			{
@@ -116,7 +116,7 @@ void CFade::Update(void)
 		//フェードアウト状態
 		if (m_fade == FADE_OUT)
 		{
-			m_color.a += 0.008f;
+			m_color.a += 0.01f;
 
 			if (m_color.a >= 1.0f)
 			{

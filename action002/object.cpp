@@ -95,24 +95,28 @@ void CObject::UpdateAll(void)
 			pObject = pObjectNext;
 		}
 
-		// 先頭を保存
-		pObject = m_pTop[nCntPriority];
 
-		while (pObject != NULL)
-		{// NULLが来るまで無限ループ
+		for (int nCntPriorityDeath = 0; nCntPriorityDeath < 8; nCntPriorityDeath++)
+		{
+			// 先頭を保存
+			pObject = m_pTop[nCntPriorityDeath];
 
-		 // 次のオブジェクトを一時保存
-			CObject *pObjNext = pObject->m_pNext;
+			while (pObject != NULL)
+			{// NULLが来るまで無限ループ
 
-			if (pObject->m_bflag == true)
-			{// 死亡フラグが立っていたら
+			 // 次のオブジェクトを一時保存
+				CObject *pObjNext = pObject->m_pNext;
 
-			 // 完全死亡処理
-				pObject->Death();
+				if (pObject->m_bflag == true)
+				{// 死亡フラグが立っていたら
+
+				 // 完全死亡処理
+					pObject->Death();
+				}
+
+				// 次のオブジェクトを代入
+				pObject = pObjNext;
 			}
-
-			// 次のオブジェクトを代入
-			pObject = pObjNext;
 		}
 	}
 }

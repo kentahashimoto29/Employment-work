@@ -20,10 +20,10 @@ CCamera::CCamera()
 	m_vecU = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	//対角線の長さを算出
-	m_Distance = sqrtf(50.0f * 50.0f + 100.0f * 100.0f);
+	m_Distance = sqrtf(0.0f * 0.0f + 0.0f * 0.0f);
 
 	//対角線の角度を算出
-	m_Angle = atan2f(50.0f, 100.0f);
+	m_Angle = atan2f(0.0f, 0.0f);
 
 	m_type = TYPE_NONE;
 
@@ -44,23 +44,16 @@ CCamera::~CCamera()
 //========================================================
 HRESULT CCamera::Init(void)
 {
-	//プレイヤー3Dの取得
-	CPlayer3D *pPlayer3D = CGame::GetPlayer3D();
-
-	m_posV = D3DXVECTOR3(pPlayer3D->GetPos().x, pPlayer3D->GetPos().y + 200.0f, pPlayer3D->GetPos().z - 500.0f);
-	m_posR = D3DXVECTOR3(pPlayer3D->GetPos().x, pPlayer3D->GetPos().y + 40.0f, pPlayer3D->GetPos().z);
+	m_posV = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_posR = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+	m_vecU = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	//対角線の長さを算出
-	m_Distance = sqrtf(m_posV.y * m_posV.y + m_posV.z * m_posV.z);
+	m_Distance = sqrtf(0.0f * 0.0f + 0.0f * 0.0f);
 
 	//対角線の角度を算出
-	m_Angle = atan2f(m_posV.y - m_posR.y, -(m_posV.z - m_posR.z));
-
-	m_rot.x = m_Angle;
-
-	y = m_rot.x;
+	m_Angle = atan2f(0.0f, 0.0f);
 
 	return S_OK;
 }
@@ -156,6 +149,27 @@ void CCamera::SetPos(D3DXVECTOR3 posV, D3DXVECTOR3 posR)
 {
 	m_posV = posV;
 	m_posR = posR;
+}
+
+//========================================================
+//カメラの位置
+//========================================================
+void CCamera::SetPosGame(D3DXVECTOR3 posV, D3DXVECTOR3 posR)
+{
+	m_posV = D3DXVECTOR3(posV.x, posV.y + 200.0f, posV.z - 500.0f);
+	m_posR = D3DXVECTOR3(posR.x, posR.y + 40.0f, posR.z);
+	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+
+	//対角線の長さを算出
+	m_Distance = sqrtf(m_posV.y * m_posV.y + m_posV.z * m_posV.z);
+
+	//対角線の角度を算出
+	m_Angle = atan2f(m_posV.y - m_posR.y, -(m_posV.z - m_posR.z));
+
+	m_rot.x = m_Angle;
+
+	y = m_rot.x;
 }
 
 //========================================================

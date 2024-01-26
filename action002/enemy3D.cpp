@@ -5,7 +5,7 @@
 //
 //========================================================
 #include "enemy3D.h"
-#include "manager.h"
+#include "game.h"
 #include "Player3D.h"
 #include "block3D.h"
 
@@ -147,11 +147,13 @@ void CEnemy3D::Uninit(void)
 //========================================================
 void CEnemy3D::Update(void)
 {
+	float fDistance;
+
 	//プレイヤーの情報を取得
-	//CPlayer3D *pPlayer = CManager::GetInstance();
+	CPlayer3D *pPlayer = CGame::GetPlayer3D();
 
 	//ブロック3Dの取得
-	//CBlock3D *pBlock = CManager::GetBlock3D();
+	CBlock3D *pBlock = CGame::GetBlock3D();
 
 	//キーボードの取得
 	CInputKeyboard *pInputKeyboard = CManager::GetInstance()->GetInputKeyboard();
@@ -159,12 +161,19 @@ void CEnemy3D::Update(void)
 	m_Oldpos = m_pos;
 
 	//対角線の角度を算出
-	//m_rot.y = atan2f(m_pos.x - pPlayer->GetPos().x, m_pos.z - pPlayer->GetPos().z);
+	m_rot.y = atan2f(m_pos.x - pPlayer->GetPos().x, m_pos.z - pPlayer->GetPos().z);
 
-	m_move.x = sinf(D3DX_PI * 0.0f + m_rot.y) / 5;
-	m_move.z = cosf(D3DX_PI * 0.0f + m_rot.y) / 5;
+	//対角線の長さを算出
+	fDistance = sqrtf((m_pos.x - pPlayer->GetPos().x) * (m_pos.x - pPlayer->GetPos().x)
+		+ (m_pos.z - pPlayer->GetPos().z) * (m_pos.z - pPlayer->GetPos().z));
 
-	m_pos -= m_move;
+	if (fDistance <= 200.0f)
+	{
+		m_move.x = sinf(D3DX_PI * 0.0f + m_rot.y);
+		m_move.z = cosf(D3DX_PI * 0.0f + m_rot.y);
+
+		m_pos += m_move;
+	}
 
 	/*if (pInputKeyboard->GetTrigger(DIK_U) == TRUE)
 	{

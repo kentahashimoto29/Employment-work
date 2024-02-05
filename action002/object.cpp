@@ -183,10 +183,6 @@ void CObject::Death(void)
 		{
 			m_pTop[nPriority] = pObjectNext;
 		}
-
-		delete pObject;
-
-		pObject = NULL;
 	}
 
 	else
@@ -201,11 +197,11 @@ void CObject::Death(void)
 		{
 			m_pTop[nPriority] = NULL;
 		}
-
-		delete pObject;
-
-		pObject = NULL;
 	}
+
+	delete pObject;
+
+	pObject = NULL;
 }
 
 //========================================================

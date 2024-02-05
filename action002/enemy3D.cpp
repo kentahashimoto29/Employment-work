@@ -5,19 +5,16 @@
 //
 //========================================================
 #include "enemy3D.h"
+#include "enemymanager.h"
 #include "game.h"
 #include "Player3D.h"
 #include "block3D.h"
-
-int CEnemy3D::m_nIdxTexture = 0;
-int CEnemy3D::m_nNum = 0;
 
 //========================================================
 //コンストラクタ
 //========================================================
 CEnemy3D::CEnemy3D(int nPriority) : CObjectX(nPriority)
 {
-	m_nNum++;
 }
 
 //========================================================
@@ -27,7 +24,6 @@ CEnemy3D::CEnemy3D(D3DXVECTOR3 pos, int nPriority) : CObjectX(nPriority)
 {
 	m_pos = pos;
 	m_nLife = 3;
-	m_nNum++;
 }
 
 //========================================================
@@ -41,7 +37,7 @@ CEnemy3D::~CEnemy3D()
 //========================================================
 //生成処理
 //========================================================
-CEnemy3D *CEnemy3D::Create(D3DXVECTOR3 pos)
+CEnemy3D *CEnemy3D::Create(D3DXVECTOR3 pos, int nIdx)
 {
 	CEnemy3D *pEnemy3D;
 
@@ -49,7 +45,7 @@ CEnemy3D *CEnemy3D::Create(D3DXVECTOR3 pos)
 	pEnemy3D = new CEnemy3D(pos);
 
 	//初期化処理
-	pEnemy3D->Init();
+	pEnemy3D->Init(nIdx);
 
 	return pEnemy3D;
 }
@@ -57,7 +53,7 @@ CEnemy3D *CEnemy3D::Create(D3DXVECTOR3 pos)
 //========================================================
 //初期化処理
 //========================================================
-HRESULT CEnemy3D::Init(void)
+HRESULT CEnemy3D::Init(int nIdx)
 {
 	int nNumVtx;				//頂点数
 	DWORD dwSizeFVF;			//頂点フォーマットのサイズ
@@ -133,6 +129,8 @@ HRESULT CEnemy3D::Init(void)
 
 	CObject::SetType(TYPE_ENEMY);
 
+	m_nIdx = nIdx;
+
 	return S_OK;
 }
 
@@ -141,8 +139,6 @@ HRESULT CEnemy3D::Init(void)
 //========================================================
 void CEnemy3D::Uninit(void)
 {
-	m_nNum--;
-
 	CObjectX::Uninit();
 }
 
@@ -164,17 +160,17 @@ void CEnemy3D::Update(void)
 
 	m_Oldpos = m_pos;
 
-	//対角線の角度を算出
-	m_rot.y = atan2f(m_pos.x - pPlayer->GetPos().x, m_pos.z - pPlayer->GetPos().z);
-
 	//対角線の長さを算出
 	fDistance = sqrtf((m_pos.x - pPlayer->GetPos().x) * (m_pos.x - pPlayer->GetPos().x)
 		+ (m_pos.z - pPlayer->GetPos().z) * (m_pos.z - pPlayer->GetPos().z));
 
 	if (fDistance <= 200.0f)
 	{
-		m_move.x = sinf(D3DX_PI * 0.0f + m_rot.y);
-		m_move.z = cosf(D3DX_PI * 0.0f + m_rot.y);
+		//対角線の角度を算出
+		m_rot.y = atan2f(m_pos.x - pPlayer->GetPos().x, m_pos.z - pPlayer->GetPos().z) - D3DX_PI;
+
+		m_move.x = -sinf(D3DX_PI * 0.0f + m_rot.y);
+		m_move.z = -cosf(D3DX_PI * 0.0f + m_rot.y);
 
 		m_pos += m_move;
 	}
@@ -187,7 +183,11 @@ void CEnemy3D::Update(void)
 	//pBlock->Collision(&m_pos, &m_Oldpos, &m_move, m_VtxMax, m_VtxMin);
 	if (pPlayer->CollisionEnemy(m_pos, m_VtxMax, m_VtxMin) == true)
 	{
-		Uninit();
+		Release();
+
+		CEnemyManager *p = CGame::GetEnemyManager();
+
+		p->Release(m_nIdx);
 	}
 
 	if (m_nLife <= 0)
@@ -210,14 +210,6 @@ void CEnemy3D::Draw(void)
 D3DXVECTOR3 CEnemy3D::GetPos(void)
 {
 	return m_pos;
-}
-
-//========================================================
-//位置を返す
-//========================================================
-int CEnemy3D::GetNum(void)
-{
-	return m_nNum;
 }
 
 //========================================================

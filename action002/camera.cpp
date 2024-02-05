@@ -80,10 +80,19 @@ void CCamera::Update(void)
 	//ƒvƒŒƒCƒ„[3D‚Ìæ“¾
 	CPlayer3D *pPlayer3D = CGame::GetPlayer3D();
 
-	//SetPosGame(pPlayer3D->GetPos(), pPlayer3D->GetPos());
+	switch (CManager::GetInstance()->GetScene()->GetMode())
+	{
+	case CScene::MODE_GAME:
+		SetPosGame(pPlayer3D->GetPos(), pPlayer3D->GetPos());
 
-	//m_posR.x += pPlayer3D->GetMove().x;
-	//m_posV.x += pPlayer3D->GetMove().x;
+		m_posR.x += pPlayer3D->GetMove().x;
+		m_posV.x += pPlayer3D->GetMove().x;
+
+		break;
+
+	default:
+		break;
+	}
 
 	
 

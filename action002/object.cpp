@@ -190,7 +190,7 @@ void CObject::Death(void)
 		if (pObject != m_pTop[nPriority])
 		{
 			pObjectPrev->m_pNext = NULL;
-			m_pCur[nPriority] = pObjectNext;
+			m_pCur[nPriority] = pObjectPrev;
 		}
 
 		else

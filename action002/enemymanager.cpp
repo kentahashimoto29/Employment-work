@@ -75,7 +75,14 @@ void CEnemyManager::Uninit(void)
 //========================================================
 void CEnemyManager::Update(void)
 {
-	
+	//キーボードの取得
+	CInputKeyboard *pInputKeyboard = CManager::GetInstance()->GetInputKeyboard();
+
+	//Wキーを押したとき
+	if (pInputKeyboard->GetTrigger(DIK_N) == true)
+	{
+		SetEnemy(D3DXVECTOR3(0.0f, 0.0f, 200.0f));
+	}
 }
 
 //==========================================================================

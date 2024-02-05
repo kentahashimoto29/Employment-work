@@ -184,7 +184,7 @@ void CManager::Update(void)
 	//XVˆ—
 	m_pFade->Update();
 	m_pCamera->Update();
-	m_pScene->Update();
+	//m_pScene->Update();
 	m_pRenderer->Update();
 	m_pInputKeyboard->Update();
 	m_pInputMouse->Update();

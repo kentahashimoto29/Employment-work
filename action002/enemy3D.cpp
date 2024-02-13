@@ -9,6 +9,7 @@
 #include "game.h"
 #include "Player3D.h"
 #include "block3D.h"
+#include "item_throw.h"
 
 //========================================================
 //コンストラクタ
@@ -152,6 +153,9 @@ void CEnemy3D::Update(void)
 	//プレイヤーの情報を取得
 	CPlayer3D *pPlayer = CGame::GetPlayer3D();
 
+	//プレイヤーの情報を取得
+	CItemThrow *pItemThrow = CGame::GetItemThrow();
+
 	//ブロック3Dの取得
 	CBlock3D *pBlock = CGame::GetBlock3D();
 
@@ -182,6 +186,15 @@ void CEnemy3D::Update(void)
 
 	//pBlock->Collision(&m_pos, &m_Oldpos, &m_move, m_VtxMax, m_VtxMin);
 	if (pPlayer->CollisionEnemy(m_pos, m_VtxMax, m_VtxMin) == true)
+	{
+		Release();
+
+		CEnemyManager *p = CGame::GetEnemyManager();
+
+		p->Release(m_nIdx);
+	}
+
+	else if (pItemThrow->CollisionEnemy(m_pos, m_VtxMax, m_VtxMin) == true)
 	{
 		Release();
 

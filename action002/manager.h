@@ -49,6 +49,8 @@ public:
 	void SetMode(MODE Mode);
 
 	D3DXVECTOR3 GetPos(void);
+	void SetPos(D3DXVECTOR3 pos);
+	void SetRot(D3DXVECTOR3 rot);
 
 private:
 	MODE m_mode;

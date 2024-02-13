@@ -15,6 +15,7 @@
 #include "through_block.h"
 #include "time.h"
 #include "field.h"
+#include "item_throw.h"
 
 //===================================
 //背景のクラス
@@ -30,14 +31,15 @@ public:
 	void Update(void);						//更新処理
 	void Draw(void);						//描画処理
 
-	D3DXVECTOR3 m_pos;						//オブジェクトの位置
+	D3DXVECTOR3 m_pos;						//オブジェクトの位置;
 
 	static CPlayer3D *GetPlayer3D();			//プレイヤー3Dのポインタを返す関数
 	static CBlock3D *GetBlock3D();				//ブロック3Dのポインタを返す関数
 	static CDeathBlock *GetDeathBlock();		//即死ブロックのポインタを返す関数
 	static CThroughBlock *GetThroughBlock();	//通り抜けれるブロックのポインタを返す関数
 	static CTime *GetTime();					//タイムのポインタを返す関数
-	static CEnemyManager *GetEnemyManager();	//プレイヤー3Dのポインタを返す関数
+	static CEnemyManager *GetEnemyManager();	//敵マネージャーのポインタを返す関数
+	static CItemThrow *GetItemThrow();			//投げアイテムのポインタを返す関数
 	CField *GetField();							//フィールドのポインタを返す関数
 	static int GetScore();
 	static void SetScore(int nScore);
@@ -51,6 +53,7 @@ private:
 	static CThroughBlock *m_pThroughBlock;		//通り抜けれるブロックのポインタ
 	static CTime *m_pTime;						//タイムのポインタ
 	static CEnemyManager *m_pEnemyManager;		//エネミー3Dのポインタ
+	static CItemThrow *m_pItemThrow;			//投げアイテムのポインタを返す関数
 	CField *m_pField[16];						//フィールドのポインタ
 
 	bool b;

@@ -81,21 +81,21 @@ CPlayer3D *CPlayer3D::Create(D3DXVECTOR3 pos)
 HRESULT CPlayer3D::Init(void)
 {
 	//モデルの生成
-	m_apModel[0] = CModel::Create("data\\MODEL\\Body.x", D3DXVECTOR3(0.0f, 24.7f, 0.0f));
-	m_apModel[1] = CModel::Create("data\\MODEL\\Neck.x", D3DXVECTOR3(0.0f, 22.0f, 0.0f));
-	m_apModel[2] = CModel::Create("data\\MODEL\\Head.x", D3DXVECTOR3(0.0f, 3.0f, 0.0f));
-	m_apModel[3] = CModel::Create("data\\MODEL\\Up_Left_arm.x", D3DXVECTOR3(7.0f, 20.0f, 0.0f));
-	m_apModel[4] = CModel::Create("data\\MODEL\\Under_Left_arm.x", D3DXVECTOR3(10.0f, 0.0f, 0.0f));
-	m_apModel[5] = CModel::Create("data\\MODEL\\Left_Hand.x", D3DXVECTOR3(10.0f, 0.0f, 0.0f));
-	m_apModel[6] = CModel::Create("data\\MODEL\\Up_Right_arm.x", D3DXVECTOR3(-7.0f, 20.0f, 0.0f));
-	m_apModel[7] = CModel::Create("data\\MODEL\\Under_Right_arm.x", D3DXVECTOR3(-10.0f, 0.0f, 0.0f));
-	m_apModel[8] = CModel::Create("data\\MODEL\\Right_Hand.x", D3DXVECTOR3(-10.0f, 0.0f, 0.0f));
-	m_apModel[9] = CModel::Create("data\\MODEL\\Up_Left_Leg.x", D3DXVECTOR3(4.5f, 0.0f, 0.0f));
-	m_apModel[10] = CModel::Create("data\\MODEL\\Under_Left_Leg.x", D3DXVECTOR3(0.0f, -11.0f, 0.0f));
-	m_apModel[11] = CModel::Create("data\\MODEL\\Left_Shose.x", D3DXVECTOR3(0.0f, -11.0f, 0.0f));
-	m_apModel[12] = CModel::Create("data\\MODEL\\Up_Right_Leg.x", D3DXVECTOR3(-4.5f, 0.0f, 0.0f));
-	m_apModel[13] = CModel::Create("data\\MODEL\\Under_Right_Leg.x", D3DXVECTOR3(0.0f, -11.0f, 0.0f));
-	m_apModel[14] = CModel::Create("data\\MODEL\\Right_Shose.x", D3DXVECTOR3(0.0f, -11.0f, 0.0f));
+	m_apModel[0] = CModel::Create("data\\MODEL\\Body.x", D3DXVECTOR3(0.0f, 24.7f, 0.0f));					//体
+	m_apModel[1] = CModel::Create("data\\MODEL\\Neck.x", D3DXVECTOR3(0.0f, 22.0f, 0.0f));					//首
+	m_apModel[2] = CModel::Create("data\\MODEL\\Head.x", D3DXVECTOR3(0.0f, 3.0f, 0.0f));					//頭
+	m_apModel[3] = CModel::Create("data\\MODEL\\Up_Left_arm.x", D3DXVECTOR3(7.0f, 20.0f, 0.0f));			//左上腕
+	m_apModel[4] = CModel::Create("data\\MODEL\\Under_Left_arm.x", D3DXVECTOR3(10.0f, 0.0f, 0.0f));			//左前腕
+	m_apModel[5] = CModel::Create("data\\MODEL\\Left_Hand.x", D3DXVECTOR3(10.0f, 0.0f, 0.0f));				//左手
+	m_apModel[6] = CModel::Create("data\\MODEL\\Up_Right_arm.x", D3DXVECTOR3(-7.0f, 20.0f, 0.0f));			//右上腕
+	m_apModel[7] = CModel::Create("data\\MODEL\\Under_Right_arm.x", D3DXVECTOR3(-10.0f, 0.0f, 0.0f));		//右前腕
+	m_apModel[8] = CModel::Create("data\\MODEL\\Right_Hand.x", D3DXVECTOR3(-10.0f, 0.0f, 0.0f));			//右手
+	m_apModel[9] = CModel::Create("data\\MODEL\\Up_Left_Leg.x", D3DXVECTOR3(4.5f, 0.0f, 0.0f));				//左腿
+	m_apModel[10] = CModel::Create("data\\MODEL\\Under_Left_Leg.x", D3DXVECTOR3(0.0f, -11.0f, 0.0f));		//左脛
+	m_apModel[11] = CModel::Create("data\\MODEL\\Left_Shose.x", D3DXVECTOR3(0.0f, -11.0f, 0.0f));			//左足
+	m_apModel[12] = CModel::Create("data\\MODEL\\Up_Right_Leg.x", D3DXVECTOR3(-4.5f, 0.0f, 0.0f));			//右腿
+	m_apModel[13] = CModel::Create("data\\MODEL\\Under_Right_Leg.x", D3DXVECTOR3(0.0f, -11.0f, 0.0f));		//右脛
+	m_apModel[14] = CModel::Create("data\\MODEL\\Right_Shose.x", D3DXVECTOR3(0.0f, -11.0f, 0.0f));			//右足
 
 	//親モデルの設定
 	m_apModel[0]->SetParent(NULL);
@@ -568,6 +568,22 @@ D3DXVECTOR3 CPlayer3D::GetPos(void)
 D3DXVECTOR3 CPlayer3D::GetRot(void)
 {
 	return m_rot;
+}
+
+//========================================================
+//位置を返す
+//========================================================
+void CPlayer3D::SetPos(D3DXVECTOR3 pos)
+{
+	m_pos = pos;
+}
+
+//========================================================
+//位置を返す
+//========================================================
+void CPlayer3D::SetRot(D3DXVECTOR3 rot)
+{
+	m_rot = rot;
 }
 
 //========================================================

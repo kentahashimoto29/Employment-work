@@ -41,6 +41,9 @@ public:
 
 	D3DXMATRIX GetMtxWorld(void);				//マトリックスを返す
 	D3DXVECTOR3 GetPos(void);					//位置を返す
+	void SetPos(D3DXVECTOR3 pos);
+	void SetRot(D3DXVECTOR3 rot);
+
 	D3DXVECTOR3 GetRot(void);					//向きを返す
 	D3DXVECTOR3 GetMove(void);					//移動量を返す
 

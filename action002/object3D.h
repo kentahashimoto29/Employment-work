@@ -27,6 +27,8 @@ public:
 	void SetVtxField(void);								//背景の頂点座標を設定
 
 	D3DXVECTOR3 GetPos(void);		//位置を返す
+	void SetPos(D3DXVECTOR3 pos);
+	void SetRot(D3DXVECTOR3 rot);
 
 	D3DXVECTOR3 m_pos;							//オブジェクトの位置
 	LPDIRECT3DVERTEXBUFFER9 m_aVerBuff;		//頂点情報へのポインタ

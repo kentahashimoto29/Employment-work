@@ -1,46 +1,8 @@
-﻿  bg.cpp
-  billboard.cpp
-  block.cpp
-  block3D.cpp
-  bullet.cpp
-  bullet3D.cpp
-  camera.cpp
-  death_block.cpp
-  effect.cpp
-  enemy.cpp
-  enemy3D.cpp
-  enemymanager.cpp
-  explosion.cpp
-  fade.cpp
-  field.cpp
-  game.cpp
-  goal.cpp
-  item3D.cpp
-  light.cpp
-  main.cpp
-  コンパイル中...
-  manager.cpp
-  model.cpp
-  motion.cpp
-  object.cpp
-  object2D.cpp
-  object3D.cpp
-  objectX.cpp
-  player.cpp
-  player3D.cpp
-  ranking.cpp
-  renderer.cpp
-  result.cpp
-  score.cpp
-  texture.cpp
-  through_block.cpp
-  time.cpp
-  title.cpp
+﻿  item_throw.cpp
   コード生成しています。
-c:\users\student\desktop\就職作品\employment-work\action002\enemymanager.cpp(155): warning C4172: ローカル変数またはテンポラリのアドレスを返します: pEnemy
-  33 of 239 functions (13.8%) were compiled, the rest were copied from previous compilation.
-    13 functions were new in current compilation
-    29 functions had inline decision re-evaluated but remain unchanged
+  3 of 248 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
   action002.vcxproj -> C:\Users\student\Desktop\就職作品\Employment-work\action002\action002.exe
   action002.vcxproj -> C:\Users\student\Desktop\就職作品\Employment-work\action002\action002.pdb (Full PDB)

@@ -24,6 +24,8 @@ public:
 	void Draw(void);				//描画処理
 
 	D3DXVECTOR3 GetPos(void);		//位置を返す
+	void SetPos(D3DXVECTOR3 pos);
+	void SetRot(D3DXVECTOR3 rot);
 
 	LPD3DXMESH m_pMesh;				//メッシュへのポインタ
 	LPD3DXBUFFER m_pBuffMat;		//マテリアルへのポインタ

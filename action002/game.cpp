@@ -19,6 +19,7 @@ CEnemyManager *CGame::m_pEnemyManager = NULL;
 CBlock3D *CGame::m_pBlock3D = NULL;
 CDeathBlock *CGame::m_pDeathBlock = NULL;
 CThroughBlock *CGame::m_pThroughBlock = NULL;
+CItemThrow *CGame::m_pItemThrow = NULL;
 CTime *CGame::m_pTime = NULL;
 int CGame::m_nScore = 0;
 
@@ -48,6 +49,8 @@ HRESULT CGame::Init(void)
 	m_pTime = CTime::Create();
 
 	m_pPlayer3D = CPlayer3D::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+	m_pItemThrow = CItemThrow::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	m_pEnemyManager = CEnemyManager::Create();
 
@@ -104,6 +107,14 @@ void CGame::Uninit(void)
 		//終了処理
 		m_pEnemyManager->Uninit();
 		m_pEnemyManager = NULL;
+	}
+
+	//NULLチェック
+	if (m_pItemThrow != NULL)
+	{
+		//終了処理
+		m_pItemThrow->Uninit();
+		m_pItemThrow = NULL;
 	}
 
 	for (int nCntField = 0; nCntField < 16; nCntField++)
@@ -221,6 +232,14 @@ CTime *CGame::GetTime(void)
 CEnemyManager *CGame::GetEnemyManager(void)
 {
 	return m_pEnemyManager;
+}
+
+//========================================================
+//通り抜けれるブロックのポインタを返す関数
+//========================================================
+CItemThrow *CGame::GetItemThrow(void)
+{
+	return m_pItemThrow;
 }
 
 

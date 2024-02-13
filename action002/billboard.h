@@ -25,6 +25,8 @@ public:
 
 	static CBillboard *Create(void);		//生成処理
 	D3DXVECTOR3 GetPos(void);				//位置を返す
+	void SetPos(D3DXVECTOR3 pos);
+	void SetRot(D3DXVECTOR3 rot);
 
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;			//テクスチャへのポインタ

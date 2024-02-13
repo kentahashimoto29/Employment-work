@@ -172,9 +172,11 @@
     <ClInclude Include="goal.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="item3D.h" />
+    <ClInclude Include="item_throw.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
+    <ClInclude Include="mesh_object3D.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="motion.h" />
     <ClInclude Include="object.h" />
@@ -213,9 +215,11 @@
     <ClCompile Include="goal.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="item3D.cpp" />
+    <ClCompile Include="item_throw.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
+    <ClCompile Include="mesh_object3D.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="motion.cpp" />
     <ClCompile Include="object.cpp" />

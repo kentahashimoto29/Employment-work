@@ -59,7 +59,13 @@ public:
 	void SetType(TYPE type);					//種類を設定
 	TYPE GetType(void);							//種類を返す
 	CObject *GetObject();						//オブジェクトの
+
 	virtual D3DXVECTOR3 GetPos(void) = 0;		//オブジェクトの位置を返す
+	virtual void SetPos(D3DXVECTOR3 pos) = 0;		//オブジェクトの位置を設定
+	virtual void SetRot(D3DXVECTOR3 rot) = 0;		//オブジェクトの向きを設定
+
+	D3DXVECTOR3 m_pos;							//オブジェクトの位置
+	D3DXVECTOR3 m_rot;							//オブジェクトの位置
 
 protected:
 

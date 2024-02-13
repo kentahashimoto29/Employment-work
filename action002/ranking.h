@@ -33,6 +33,8 @@ public:
 
 	void SetScore(int nScore, int nCntR);	//設定処理
 	D3DXVECTOR3 GetPos(void);				//位置を返す
+	void SetPos(D3DXVECTOR3 pos);
+	void SetRot(D3DXVECTOR3 rot);
 
 	D3DXVECTOR3 m_pos;						//オブジェクトの位置
 

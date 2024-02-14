@@ -40,10 +40,10 @@ CPlayer3D::CPlayer3D(D3DXVECTOR3 pos, int nPriority) : CObject(nPriority)
 {
 	m_pos = pos;
 	m_revivalpos = pos;
-	m_rot = D3DXVECTOR3(0.0f, -D3DX_PI / 2, 0.0f);
+	m_rot = D3DXVECTOR3(0.0f, 0.0f / 2, 0.0f);
 	m_revivalrot = m_rot;
-	m_Destrot = D3DXVECTOR3(0.0f, -D3DX_PI / 2, 0.0f);
-	m_Diffrot = D3DXVECTOR3(0.0f, -D3DX_PI / 2, 0.0f);
+	m_Destrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_Diffrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_nNumModel = 0;
 	m_VtxMax = D3DXVECTOR3(20.0f, 60.0f, 20.0f);
 	m_VtxMin = D3DXVECTOR3(-20.0f, 0.0f, -20.0f);

@@ -156,6 +156,9 @@
     <ClInclude Include="item_throw.h">
       <Filter>ヘッダー ファイル\3D</Filter>
     </ClInclude>
+    <ClInclude Include="wall.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="renderer.cpp">
@@ -280,6 +283,9 @@
     </ClCompile>
     <ClCompile Include="item_throw.cpp">
       <Filter>ソース ファイル\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="wall.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

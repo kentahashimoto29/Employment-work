@@ -29,6 +29,7 @@ int CGame::m_nScore = 0;
 CGame::CGame()
 {
 	memset(&m_pField[0], NULL, sizeof(m_pField));		// 
+	memset(&m_pWall[0], NULL, sizeof(m_pWall));			// 
 	m_nScore = 0;
 }
 
@@ -74,6 +75,8 @@ HRESULT CGame::Init(void)
 	m_pField[14] = CField::Create(D3DXVECTOR3(200.0f, 0.0f, 300.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	m_pField[15] = CField::Create(D3DXVECTOR3(300.0f, 0.0f, 300.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
+	m_pWall[0] = CWall::Create(D3DXVECTOR3(-50.0f, 50.0f, 0.0f), D3DXVECTOR3(0.0f, -D3DX_PI / 2, 0.0f), 3);
+	
 	CManager::GetInstance()->GetCamera()->SetPosGame(m_pPlayer3D->GetPos(), m_pPlayer3D->GetPos());
 
 

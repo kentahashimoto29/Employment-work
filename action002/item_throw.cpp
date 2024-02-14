@@ -205,12 +205,6 @@ void CItemThrow::Draw(void)
 		//親がNULLだった場合
 		else if (CGame::GetPlayer3D()->GetModel(8) == NULL)
 		{
-			/*CPlayer3D *pPlayer3D = CManager::GetPlayer3D();
-
-			mtxParent = pPlayer3D->GetMtxWorld();
-
-			D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxParent);*/
-
 			//現在(最新)のマトリックスを取得する
 			pDevice->GetTransform(D3DTS_WORLD, &mtxParent);
 		}
@@ -277,10 +271,10 @@ bool CItemThrow::CollisionEnemy(D3DXVECTOR3 pos, D3DXVECTOR3 vtxMax, D3DXVECTOR3
 
 			if (type == TYPE_ENEMY)
 			{
-				if (pos.x + vtxMin.x < m_pos.x + m_VtxMax.x
-					&& pos.x + vtxMax.x > m_pos.x + m_VtxMin.x
-					&& pos.z + vtxMin.z < m_pos.z + m_VtxMax.z
-					&& pos.z + vtxMax.z > m_pos.z + m_VtxMin.z)
+				if (pos.x + vtxMin.x < m_pos.x + m_VtxMax.x * cosf(m_rot.y) + m_VtxMin.z * sinf(m_rot.y)
+					&& pos.x + vtxMax.x > m_pos.x + m_VtxMax.x * cosf(m_rot.y) + m_VtxMin.z * sinf(m_rot.y)
+					&& pos.z + vtxMin.z < m_pos.z + m_VtxMax.x * sinf(m_rot.y) + m_VtxMin.z * cosf(m_rot.y)
+					&& pos.z + vtxMax.z > m_pos.z + m_VtxMax.x * sinf(m_rot.y) + m_VtxMin.z * cosf(m_rot.y))
 				{
 					return true;
 				}

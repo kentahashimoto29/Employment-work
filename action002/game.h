@@ -15,10 +15,11 @@
 #include "through_block.h"
 #include "time.h"
 #include "field.h"
+#include "wall.h"
 #include "item_throw.h"
 
 //===================================
-//背景のクラス
+//ゲームのクラス
 //===================================
 class CGame : public CScene
 {
@@ -41,6 +42,7 @@ public:
 	static CEnemyManager *GetEnemyManager();	//敵マネージャーのポインタを返す関数
 	static CItemThrow *GetItemThrow();			//投げアイテムのポインタを返す関数
 	CField *GetField();							//フィールドのポインタを返す関数
+	CWall *GetWall();							//壁のポインタを返す関数
 	static int GetScore();
 	static void SetScore(int nScore);
 	static void AddScore();
@@ -55,6 +57,7 @@ private:
 	static CEnemyManager *m_pEnemyManager;		//エネミー3Dのポインタ
 	static CItemThrow *m_pItemThrow;			//投げアイテムのポインタを返す関数
 	CField *m_pField[16];						//フィールドのポインタ
+	CWall *m_pWall[16];							//壁のポインタ
 
 	bool b;
 	static int m_nScore;

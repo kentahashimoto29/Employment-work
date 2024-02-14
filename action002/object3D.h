@@ -10,7 +10,7 @@
 #include "object.h"
 
 //===================================
-//オブジェクト３Ⅾのクラス
+//オブジェクト3Dのクラス
 //===================================
 class CObject3D : public CObject
 {
@@ -19,12 +19,14 @@ public:
 	~CObject3D();					//デストラクタ
 
 	HRESULT Init(void);				//初期化処理
+	HRESULT Init(int nWidth);				//初期化処理
 	void Uninit(void);				//終了処理
 	void Update(void);				//更新処理
 	void Draw(void);				//描画処理
 
 	void BindTexture(int nTexture);				//テクスチャの番号を割り当てる
-	void SetVtxField(void);								//背景の頂点座標を設定
+	void SetVtxField(void);						//フィールドの頂点座標を設定
+	void SetVtxWall();						//壁の頂点座標を設定
 
 	D3DXVECTOR3 GetPos(void);		//位置を返す
 	void SetPos(D3DXVECTOR3 pos);
@@ -39,5 +41,8 @@ public:
 
 private:
 	int m_nTexture;							//テクスチャの番号
+
+	int m_nWidth;
+	int m_nNumVtx;
 };
 #endif

@@ -31,6 +31,8 @@ CObject3D::~CObject3D()
 //========================================================
 HRESULT CObject3D::Init(void)
 {
+	m_nNumVtx = 4;
+
 	//デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 
@@ -53,10 +55,10 @@ HRESULT CObject3D::Init(void)
 	pVtx[2].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	pVtx[3].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
-	pVtx[0].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	pVtx[1].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	pVtx[2].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
-	pVtx[3].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+	pVtx[0].nor = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	pVtx[1].nor = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	pVtx[2].nor = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	pVtx[3].nor = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	//頂点カラーの設定
 	pVtx[0].col = D3DCOLOR_RGBA(255, 255, 255, 255);
@@ -69,6 +71,64 @@ HRESULT CObject3D::Init(void)
 	pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
 	pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
 	pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
+
+	//頂点バッファをアンロックする
+	m_aVerBuff->Unlock();
+
+	return S_OK;
+}
+
+//========================================================
+//ポリゴンの初期化処理
+//========================================================
+HRESULT CObject3D::Init(int nWidth)
+{
+	m_nWidth = nWidth;
+	m_nNumVtx = nWidth * 4;
+
+	//デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
+
+	//頂点バッファを生成
+	pDevice->CreateVertexBuffer(sizeof(VERTEX_3D) * 4 * m_nWidth,
+		D3DUSAGE_WRITEONLY,
+		FVF_VERTEX_3D,
+		D3DPOOL_MANAGED,
+		&m_aVerBuff,
+		NULL);
+
+	VERTEX_3D *pVtx;
+
+	//頂点バッファをロック
+	m_aVerBuff->Lock(0, 0, (void**)&pVtx, 0);
+
+	for (int nCntWidth = 0; nCntWidth < m_nWidth; nCntWidth++)
+	{// 横の頂点数分繰り返す
+		 //頂点座標の設定
+		pVtx[0].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		pVtx[1].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		pVtx[2].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		pVtx[3].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+		pVtx[0].nor = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		pVtx[1].nor = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		pVtx[2].nor = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		pVtx[3].nor = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+		//頂点カラーの設定
+		pVtx[0].col = D3DCOLOR_RGBA(255, 255, 255, 255);
+		pVtx[1].col = D3DCOLOR_RGBA(255, 255, 255, 255);
+		pVtx[2].col = D3DCOLOR_RGBA(255, 255, 255, 255);
+		pVtx[3].col = D3DCOLOR_RGBA(255, 255, 255, 255);
+
+		//テクスチャ座標の設定
+		pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
+		pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
+		pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
+		pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
+
+		pVtx += 4;
+	}
 
 	//頂点バッファをアンロックする
 	m_aVerBuff->Unlock();
@@ -139,7 +199,7 @@ void CObject3D::Draw(void)
 	pDevice->DrawPrimitive(
 		D3DPT_TRIANGLESTRIP,                  //プリミティブの種類
 		0,                                    //最初の頂点インデックス
-		2);                                   //プリミティブ数
+		m_nNumVtx - 2);                                   //プリミティブ数
 }
 
 //========================================================
@@ -206,6 +266,49 @@ void CObject3D::SetVtxField(void)
 	pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
 	pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
 	pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
+
+	//頂点バッファをアンロックする
+	m_aVerBuff->Unlock();
+}
+
+
+//========================================================
+//位置を返す
+//========================================================
+void CObject3D::SetVtxWall()
+{
+	VERTEX_3D *pVtx;
+
+	//頂点バッファをロック
+	m_aVerBuff->Lock(0, 0, (void**)&pVtx, 0);
+
+	for (int nCntWidth = 0; nCntWidth < m_nWidth; nCntWidth++)
+	{// 横の頂点数分繰り返す
+		//頂点座標の設定
+		pVtx[0].pos = D3DXVECTOR3(-50.0f + nCntWidth * 100.0f, 50.0f, 0.0f);
+		pVtx[1].pos = D3DXVECTOR3(50.0f + nCntWidth * 100.0f, 50.0f, 0.0f);
+		pVtx[2].pos = D3DXVECTOR3(-50.0f + nCntWidth * 100.0f, -50.0f, 0.0f);
+		pVtx[3].pos = D3DXVECTOR3(50.0f + nCntWidth * 100.0f, -50.0f, 0.0f);
+
+		pVtx[0].nor = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
+		pVtx[1].nor = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
+		pVtx[2].nor = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
+		pVtx[3].nor = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
+
+		//頂点カラーの設定
+		pVtx[0].col = D3DCOLOR_RGBA(255, 255, 255, 255);
+		pVtx[1].col = D3DCOLOR_RGBA(255, 255, 255, 255);
+		pVtx[2].col = D3DCOLOR_RGBA(255, 255, 255, 255);
+		pVtx[3].col = D3DCOLOR_RGBA(255, 255, 255, 255);
+
+		//テクスチャ座標の設定
+		pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
+		pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
+		pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
+		pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
+
+		pVtx += 4;
+	}
 
 	//頂点バッファをアンロックする
 	m_aVerBuff->Unlock();
